@@ -5,8 +5,62 @@
     version="3.0">
     
   <display-name>J2EE Applications Example inputed to git</display-name>
+  
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
 
+  <!-- this is main spring framework configuration file -->
+  <!-- will hold all spring framewrok configuration, and spring java beans  -->
+  <context-param>
+	<param-name>contextConfigLocation</param-name>
+	<param-value>/WEB-INF/applicationContext.xml</param-value>
+  </context-param>
+  
+  <!-- file that will hold java server faces(jsf) use -->
+  <context-param>
+      <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+      <param-value>.xhtml</param-value>
+  </context-param>
+  
+  <!-- enable developtment mod of facelets
+  and help for debugging -->
+  <context-param>
+      <param-name>facelets.DEVELOPMENT</param-name>
+      <param-value>true</param-value>
+  </context-param>
+  
+  <!-- related with facelets development mod and related to period of  -->
+  <context-param>
+      <param-name>javax.faces.FACELETS_REFRESH_AUTO</param-name>
+      <param-value>1</param-value>
+  </context-param>
+  
+  <!-- responsible for context loading -->
+  <listener>
+      <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <servlet-mapping>
+      <servlet-name>Resources Servlet</servlet-name>
+      <url-pattern>/resources/*</url-pattern>
+  </servlet-mapping>
+  
+  <!-- which handle incoming and outcoming request -->
+  <servlet>
+      <servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+      <init-param>
+          <param-name>contextConfigLocation</param-name>
+          <param-value></param-value>
+      </init-param>
+      <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <!-- to access servlet is by typing "/app/*" -->
+  <servlet-mapping>
+      <servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+      <url-pattern>/app/*</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
